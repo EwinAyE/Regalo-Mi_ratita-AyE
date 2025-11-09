@@ -289,36 +289,37 @@ section, article {
     box-shadow: 6px 6px 0px var(--shadow-color);
     margin-bottom: 5px;
 }
-/* style.css (Reemplaza la sección de .hero-image) */
-/* style.css (Añade o ajusta esta regla) */
 /* --- ESTILO ESPECÍFICO: POP IT DE NOTAS --- */
 
 .popit-grid {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los ítems salten de línea */
-    justify-content: center;
-    gap: 25px; /* Espacio entre los bloques */
+    display: grid;
+    /* CAMBIO CLAVE 1: Usamos 'grid' para controlar mejor el tamaño. Min-ancho de 280px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
     padding: 30px;
+    max-width: 900px; /* Asegura que la sección no se estire demasiado */
+    margin: 30px auto;
 }
 
 .popit-item {
-    width: 150px; /* Tamaño del bloque */
-    height: 150px;
+    /* Eliminamos el tamaño fijo (width: 150px; height: 150px;) para que crezcan */
+    /* Lo esencial es el relleno y el estilo de bloque */
     background-color: var(--color-accent); /* ¡El color POP IT! (Rosa) */
     color: var(--color-main);
     cursor: pointer;
-    border-radius: 20px; /* Bordes suaves para simular la burbuja */
+    border-radius: 0; /* Lo hacemos cuadrado estilo Minecraft */
     border: 5px solid var(--shadow-color);
     box-shadow: 0 8px 0 var(--shadow-color); /* Sombra 3D */
     transition: all 0.1s ease;
     
-    /* Configuración inicial para el texto */
     position: relative;
+    /* Añadimos más relleno (padding) para darle tamaño inicial */
+    padding: 20px; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 10px;
+    min-height: 100px; /* Aseguramos una altura mínima */
 }
 
 /* Efecto de "Pulsado" (el pop!) */
@@ -328,24 +329,31 @@ section, article {
 }
 
 .popit-label {
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* Lo hacemos más grande */
     font-weight: bold;
     text-transform: uppercase;
 }
 
 /* Contenido de la nota (inicialmente oculto) */
 .popit-content {
-    display: none; /* Oculto por defecto */
-    position: absolute;
+    /* CAMBIO CLAVE 2: Quitamos el 'position: absolute' para que el contenido fluya */
+    display: none; 
+    position: static; /* Aseguramos que se comporte como un bloque normal al revelar */
+    
     background-color: #333333; /* Fondo de la nota al revelar */
     color: var(--color-text);
-    padding: 15px;
+    /* Damos mucho más espacio al contenido revelado */
+    padding: 20px;
+    
     border: 3px solid var(--color-accent);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 10;
-    max-width: 250px;
+    max-width: 100%; /* Ocupa todo el ancho disponible del popit-item */
     border-radius: 0;
-    font-family: Arial, sans-serif; /* Usamos fuente normal para la lectura */
+    font-family: 'VT323', monospace; /* Lo mantenemos pixelado */
+    margin-top: 15px; /* Separación después de la etiqueta */
+    text-align: left;
+    font-size: 1.2rem; /* El texto de la nota revelada es grande */
 }
 /* --- ESTILO ESPECÍFICO: LIGHTBOX / PANTALLA COMPLETA --- */
 
